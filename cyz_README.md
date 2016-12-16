@@ -38,7 +38,7 @@ sudo nginx -c /usr/local/nginx/nginx.conf
 ```nginx
 # 声明这个虚拟 server, 具体的作用还不明白 
 upstream nodejs {
-        server 127.0.0.1:2048; # 这个port是 node－weixin 在 listen 的端口
+        server 127.0.0.1:2048; # 这个port是 node-weixin 在 listen 的端口
         keepalive 64;
 }
 
@@ -92,3 +92,12 @@ http {
 扫码验证登录后，URL地址栏输入tunnel地址没有反应，不能挑战，经过试验发现本地URL应该是   
 `http://localhost:2048`
 即localhost加端口号
+
+## 在windows下用Ngrok和nginx本地调试
+[Ngrok的参考链接: https://natapp.cn/article/wechat_local_debug](https://natapp.cn/article/wechat_local_debug)
+
+### nginx的配置
+nginx的conf文件中，include一个server的配置，在server_name中按照上面的教程里的把natapp给出的url加进去就可以了。运行nginx依然是用-c指定配置文件。
+Windows本地的ngrok默认是穿透80端口，所以node-weixin-express的配置yaml文件里的port可以直接设置为80。
+微信测试号的token验证接口是 natapp_Url + 前缀 + /auth/ack。server的host也是这个。  
+jssdk接口的安全域名是 natapp_Url, 不加后面的/jssdk/config, 也不加前面的 http(s):// 。

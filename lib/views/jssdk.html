@@ -168,28 +168,28 @@
             ];
             config.timestamp = parseInt(config.timestamp);
             wx.config(config);
-            wx.ready(function() {
-                alert("微信jssdk配置成功!");
-                $('h2 > a.QRScan').click(function() {
-                    wx.scanQRCode({
-                        needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
-                        scanType: ["qrCode", "barCode"], // 可以指定扫二维码还是一维码，默认二者都有
-                        success: function(res) {
-                            var result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
-                            alert(result);
-                        }
-                    });
-                });
-            });
-            wx.error(function(res) {
-                console.log('微信JSSDK配置失败！');
-                console.log(JSON.stringify(res));
-                // console.log(res.errMsg);
-            });
+            // wx.ready(function() {
+            //     alert("微信jssdk配置成功!");
+            //     $('h2 > a.QRScan').click(function() {
+            //         wx.scanQRCode({
+            //             needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
+            //             scanType: ["qrCode", "barCode"], // 可以指定扫二维码还是一维码，默认二者都有
+            //             success: function(res) {
+            //                 var result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
+            //                 alert(result);
+            //             }
+            //         });
+            //     });
+            // });
+            // wx.error(function(res) {
+            //     console.log('微信JSSDK配置失败！');
+            //     console.log(JSON.stringify(res));
+            //     // console.log(res.errMsg);
+            // });
         });
     });
 </script>
 <link rel="stylesheet" href="/css/jssdk_demo.css">
-<!--<script src="/js/jssdk_demo.js">
-</script>-->
+<script src="/js/jssdk_demo.js">
+</script>
 {% endblock %}
