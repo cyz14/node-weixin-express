@@ -101,3 +101,10 @@ nginx的conf文件中，include一个server的配置，在server_name中按照�
 Windows本地的ngrok默认是穿透80端口，所以node-weixin-express的配置yaml文件里的port可以直接设置为80。
 微信测试号的token验证接口是 natapp_Url + 前缀 + /auth/ack。server的host也是这个。  
 jssdk接口的安全域名是 natapp_Url, 不加后面的/jssdk/config, 也不加前面的 http(s):// 。
+
+### 服务器端用pm2保持程序一直运行
+```sh
+sudo npm install -g pm2
+[node-weixin=express]$ pm2 start lib/cli.js -- config.yaml
+```
+According [Issue#13](https://github.com/Unitech/pm2/issues/13), pass parameters to pm2 can be done by adding "--" before params.
